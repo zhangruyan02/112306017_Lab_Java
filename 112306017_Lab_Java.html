@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+      border: none;
+      transition: transform 0.2s; 
+    }
+
+    .button:hover {
+      transform: scale(1.1); 
+    }
+
+    .red { background-color: #FFB6C1; color: #fff; }
+    .light-blue { background-color: skyblue; color: #fff; }
+    .blue { background-color:  cornflowerblue; color: #fff; }
+    .green { background-color: seagreen; color: #fff; }
+    .reset { background-color:gray ; color: #fff; }
+  </style>
+</head>
+<body>
+  <script>
+    var firstnum, secondnum;
+
+    document.addEventListener("DOMContentLoaded", function() {
+      compareNumbers();
+    });
+
+    function compareNumbers() {
+      firstnum = prompt("Please enter your first number");
+
+      if (firstnum === null) {
+        return; 
+      }
+
+      firstnum = parseFloat(firstnum);
+
+      if (!isNaN(firstnum)) {
+        secondnum = prompt("Please enter your second number");
+
+        if (secondnum === null) {
+          return; 
+        }
+
+        secondnum = parseFloat(secondnum);
+
+        if (!isNaN(secondnum)) {
+          
+          var resultDisplay = document.getElementById('result');
+
+          if (firstnum > secondnum) {
+            document.body.style.backgroundColor = 'lightblue';
+            resultDisplay.innerHTML = firstnum + " > " + secondnum;
+          } else if (secondnum > firstnum) {
+            document.body.style.backgroundColor = 'orange';
+            resultDisplay.innerHTML = secondnum + " > " + firstnum;
+          } else {
+            document.body.style.backgroundColor = 'lightyellow';
+            resultDisplay.innerHTML = secondnum + " == " + firstnum;
+          }
+        } else {
+          alert("Please enter a valid second number.");
+        }
+      } else {
+        alert("Please enter a valid first number.");
+      }
+    }
+
+    function resetColors() {
+      document.body.style.backgroundColor = 'white';
+      document.getElementById('result').innerHTML = '';
+    }
+  </script>
+
+  <h1>Interactive Buttons</h1>
+  <button class="button red" id="alertButton1" onclick="alert(firstnum);">1st Button</button>
+  <button class="button light-blue" id="alertButton2" onclick="alert(secondnum);">2nd Button</button>
+  <button class="button blue" id="colorButtonBlue" onclick="document.body.style.backgroundColor = 'lightblue';">blue</button>
+  <button class="button green" id="colorButtonGreen" onclick="document.body.style.backgroundColor = '#008080';">green</button>
+  <input class="button reset" id="alertButton3" value="Reset Background Color" onclick="alert('Reset Background Color');document.body.style.backgroundColor = 'white';"></input>
+  <div id="result"></div>
+</body>
+</html>
